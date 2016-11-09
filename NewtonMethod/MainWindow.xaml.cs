@@ -25,18 +25,18 @@ namespace NewtonMethod
         public MainWindow()
         {
             InitializeComponent();
-            txtPrecision.Text = "0.001";
+            txtPrecision.Text = "0,001";
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             var f = Infix.ParseOrThrow(txtF.Text);
             var g = Infix.ParseOrThrow(txtG.Text);
-            double x0 = Convert.ToDouble(txtX0.Text, CultureInfo.InvariantCulture);
-            double y0 = Convert.ToDouble(txtY0.Text, CultureInfo.InvariantCulture);
-            double precision = Convert.ToDouble(txtPrecision.Text, CultureInfo.InvariantCulture);
+            double x0 = Convert.ToDouble(txtX0.Text);
+            double y0 = Convert.ToDouble(txtY0.Text);
+            double precision = Convert.ToDouble(txtPrecision.Text);
             int iterations;
-            var result = IterativeMethods.ModifiedNewtonMethod(
+            var result = IterativeMethods.OriginalNewtonMethod(
                 f, g, x0, y0, precision, out iterations);
             txtResult.Text =
                 "x: " + result[0] +

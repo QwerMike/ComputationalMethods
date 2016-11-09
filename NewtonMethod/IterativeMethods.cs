@@ -6,6 +6,39 @@ namespace NewtonMethod
 {
     static class IterativeMethods
     {
+        public static double[] OriginalNewtonMethod(
+          Expression f, Expression g,
+          double x0, double y0,
+          double precision, out int iterations)
+        {
+            iterations = 0;
+            var x = Expression.Symbol("x");
+            var y = Expression.Symbol("y");
+            double xResult, yResult, xPreviuos = x0, yPrevious = y0, difference;
+
+            do
+            {
+                double
+                dfx = Calculus.Differentiate(x, f).eval(xPreviuos, yPrevious),
+                dfy = Calculus.Differentiate(y, f).eval(xPreviuos, yPrevious),
+                dgx = Calculus.Differentiate(x, g).eval(xPreviuos, yPrevious),
+                dgy = Calculus.Differentiate(y, g).eval(xPreviuos, yPrevious);
+
+                double determinant = dfx * dgy - dfy * dgx;
+
+                ++iterations;
+                xResult = xPreviuos + (dfy * g.eval(xPreviuos, yPrevious)
+                    - dgy * f.eval(xPreviuos, yPrevious)) / determinant;
+                yResult = yPrevious + (dgx * f.eval(xPreviuos, yPrevious)
+                    - dfx * g.eval(xPreviuos, yPrevious)) / determinant;
+                difference = distance(xPreviuos, yPrevious, xResult, yResult);
+                xPreviuos = xResult;
+                yPrevious = yResult;
+            } while (difference > precision);
+
+            return new double[] { xResult, yResult };
+        }
+
         public static double[] ModifiedNewtonMethod(
            Expression f, Expression g,
            double x0, double y0,
