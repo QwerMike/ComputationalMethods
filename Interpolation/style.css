@@ -1,0 +1,25 @@
+
+li input {
+  height: 23px;
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+li input[type="submit"] {
+  width: 100px;
+  height: 27px;
+  border :0;
+  background: #565656;
+  color: #fff;
+}
+.emptyField {
+  box-shadow: 0 0 5px 1px #f43841;
+  position: relative;
+  animation: shake .1s linear;
+  animation-iteration-count: 3;
+}
+
+@keyframes shake {
+    0% { left: -1px; }
+    100% { right: -1px; }
+}
