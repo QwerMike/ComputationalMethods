@@ -1,3 +1,74 @@
+function compute(e) {
+  let newtonFormula = document.getElementById("newton_select");
+  let xTxt = document.getElementById("x_txt");
+  let yTxt = document.getElementById("y_txt");
+  let valueTxt = document.getElementById("value_txt");
+  if (!(xTxt.value && yTxt.value && valueTxt.value)) {
+    if (!xTxt.value) {
+      xTxt.classList.add('emptyField');
+      setTimeout(() => xTxt.classList.remove('emptyField'), 300);
+    }
+    if (!yTxt.value) {
+      yTxt.classList.add('emptyField');
+      setTimeout(() => yTxt.classList.remove('emptyField'), 300);
+    }
+    if (!valueTxt.value) {
+      valueTxt.classList.add('emptyField');
+      setTimeout(() => valueTxt.classList.remove('emptyField'), 300);
+    }
+    return;
+  }
+
+  let x = parseArguments(xTxt.value);
+  let y = getFunctionValues(yTxt.value, x);
+  let value = parseFloat(valueTxt.value);
+  newtonFormula = newtonFormula.options[newtonFormula.selectedIndex].value;
+  let result = 0;
+  switch (newtonFormula) {
+    case "newtonFDD":
+      result = Interpolation.newtonForwardDividedDifference(x, y, value);
+      break;
+    case "newtonFFD":
+      result = Interpolation.newtonForwardFiniteDifference(x, y, value);
+      break;
+    case "newtonBDD":
+      result = Interpolation.newtonBackwardDividedDifference(x, y, value);
+      break;
+    case "newtonBFD":
+      result = Interpolation.newtonBackwardFiniteDifference(x, y, value);
+      break;
+    default:
+      throw alert("unexpected exception");
+  }
+
+  alert("Result: " + result);
+}
+
+function parseArguments(args) {
+  return args.replace(/\s/g, "")
+             .split(",")
+             .map(item => parseFloat(item));
+}
+
+function getFunctionValues(funcOrValues, x) {
+  if (funcOrValues.trim().substring(0, 4) == "f(x)") {
+    let fx = math.compile(funcOrValues.split("=")[1]);
+    return fxToY(fx, x);
+  } else {
+    return funcOrValues.replace(/\s/g, "")
+                       .split(",")
+                       .map(item => parseFloat(item));
+  }
+}
+
+function fxToY(fx, x) {
+  let y = new Array(x.length);
+  for (let i = 0; i < x.length; ++i) {
+    y[i] = fx.eval({x: x[i]});
+  }
+  return y;
+}
+
 class Interpolation {
   static lagrange(x, y, value) {
     let result = 0;
@@ -104,13 +175,4 @@ class Interpolation {
     }
     return coef;
   }
-
-}
-
-function fxToY(x, fx) {
-  let y = new Array(x.length);
-  for (let i = 0; i < x.length; ++i) {
-    y[i] = fx.eval({x: x[i]});
-  }
-  return y;
 }

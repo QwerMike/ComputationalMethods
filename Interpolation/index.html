@@ -6,6 +6,28 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <ul class="main">
+      <li>
+        <select id="newton_select">
+          <option value="newtonFDD">Newton Forward Divided Difference Formula</option>
+          <option value="newtonFFD">Newton Forward Finite Difference Formula</option>
+          <option value="newtonBDD">Newton Backward Divided Difference Formula</option>
+          <option value="newtonBFD">Newton Backward Finite Difference Formula</option>
+        </select>
+      </li>
+      <li>
+        <input type="text" id="x_txt" placeholder="arguments, e.g. 1,2,3,4"/>
+      </li>
+      <li>
+        <input type="text" id="y_txt" placeholder="function, e.g. f(x) = x^2 OR values: e.g. 1,2,3,4"/>
+      </li>
+      <li>
+        <input type="text" id="value_txt" placeholder="value, x, e.g. 5"/>
+      </li>
+      <li>
+        <input type="submit" id="compute_btn" value="Compute" onclick="compute()"/>
+      </li>
+    </ul>
     <script src="math.min.js"></script>
     <script src="script.js"></script>
   </body>

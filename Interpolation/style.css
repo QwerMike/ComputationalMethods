@@ -1,17 +1,55 @@
+ul.main {
+  display: block;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  width: 500px;
+  background: whitesmoke;
+  -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-li input {
+ul * {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+li {
+  display: block;
+  margin-bottom: 20px;
+}
+
+li * {
+  width: 75%;
   height: 23px;
-  width: 50%;
+  -webkit-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+	box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
   border: 1px solid #ccc;
   border-radius: 3px;
 }
-li input[type="submit"] {
+
+select {
+  height: 26px;
+  padding: 3px;
+  background: #f8f8f8;
+  border:none;
+}
+
+input[type="submit"] {
   width: 100px;
-  height: 27px;
-  border :0;
+  height: 30px;
+  border: 0;
   background: #565656;
   color: #fff;
 }
+
 .emptyField {
   box-shadow: 0 0 5px 1px #f43841;
   position: relative;
