@@ -5,16 +5,16 @@ function compute(e) {
   let valueTxt = document.getElementById("value_txt");
   if (!(xTxt.value && yTxt.value && valueTxt.value)) {
     if (!xTxt.value) {
-      xTxt.classList.add('emptyField');
-      setTimeout(() => xTxt.classList.remove('emptyField'), 300);
+      xTxt.classList.add("emptyField");
+      setTimeout(() => xTxt.classList.remove("emptyField"), 300);
     }
     if (!yTxt.value) {
-      yTxt.classList.add('emptyField');
-      setTimeout(() => yTxt.classList.remove('emptyField'), 300);
+      yTxt.classList.add("emptyField");
+      setTimeout(() => yTxt.classList.remove("emptyField"), 300);
     }
     if (!valueTxt.value) {
-      valueTxt.classList.add('emptyField');
-      setTimeout(() => valueTxt.classList.remove('emptyField'), 300);
+      valueTxt.classList.add("emptyField");
+      setTimeout(() => valueTxt.classList.remove("emptyField"), 300);
     }
     return;
   }
@@ -40,7 +40,7 @@ function compute(e) {
     default:
       throw alert("unexpected exception");
   }
-
+  
   alert("Result: " + result);
 }
 
