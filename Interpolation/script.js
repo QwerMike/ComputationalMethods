@@ -25,6 +25,9 @@ function compute(e) {
   newtonFormula = newtonFormula.options[newtonFormula.selectedIndex].value;
   let result = 0;
   switch (newtonFormula) {
+	case "lagrange":
+      result = Interpolation.lagrange(x, y, value);
+      break;
     case "newtonFDD":
       result = Interpolation.newtonForwardDividedDifference(x, y, value);
       break;
