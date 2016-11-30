@@ -48,9 +48,26 @@ function compute(e) {
 }
 
 function parseArguments(args) {
-  return args.replace(/\s/g, "")
-             .split(",")
-             .map(item => parseFloat(item));
+  args = args.replace(/\s/g, "");
+  if (args.substring(0, 1) == "h") {
+    args = args.split(",");
+    let h = parseFloat(args[0].split("=")[1]);
+    let n = parseInt(args[1].split("=")[1]);
+    let x0 = parseFloat(args[2].split("=")[1]);
+    return getFunctionArguments(h, n, x0);
+  } else {
+    return args.split(",")
+              .map(item => parseFloat(item));
+  }
+}
+
+function getFunctionArguments(h, n, x0) {
+  let result = new Array(n);
+  for (let i = 0; i < n; ++i) {
+    result[i] = x0 + h*i;
+  }
+
+  return result;
 }
 
 function getFunctionValues(funcOrValues, x) {
@@ -79,10 +96,12 @@ class Interpolation {
       let term = 1;
       let coef = y[i];
       for (let k = 0; k < i; ++k) {
-        term *= (value - x[k]) / (x[i] - x[k]);
+        let q = (value - x[k]) / (x[i] - x[k])
+        term *= q;
       }    
       for (let k = i + 1; k < x.length; ++k) {
-        term *= (value - x[k]) / (x[i] - x[k]);
+        let q = (value - x[k]) / (x[i] - x[k])
+        term *= q;
       }
       result += coef * term;
     }

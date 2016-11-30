@@ -7,7 +7,8 @@ ul.main {
   padding-bottom: 10px;
   padding-left: 0;
   padding-right: 0;
-  width: 500px;
+  width: 70%;
+  min-width: 500px;
   background: whitesmoke;
   -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
