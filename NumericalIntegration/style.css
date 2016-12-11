@@ -39,14 +39,14 @@ li * {
 }
 
 select {
-  width: 102%;
+  width: calc(100% + 5px);
   height: 26px;
   background: #f8f8f8;
   border: none;
 }
 
 input[type="text"] {  
-  padding: 0.5% 1% 0.5% 1%;
+  padding: 0 0 0 3px;
 }
 
 input[type="submit"] {
